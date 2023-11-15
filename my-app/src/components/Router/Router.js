@@ -5,7 +5,7 @@ function Router() {
     return <BrowserRouter>
         <Routes>
 
-        <Route element={<App />} path='/' />
+        <Route element={<App />} path='/fines-shop-webapp.io' />
         <Route path='*' element={<div> Not found </div>} />
 
         </Routes>
