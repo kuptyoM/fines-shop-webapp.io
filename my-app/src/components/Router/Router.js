@@ -6,7 +6,7 @@ import AccountDetail from '../screens/Account/AccountDetail.js'
 import AvaibilityDetail from '../screens/Avaibility/AvaibilityDetail.js'
 
 function Router() {
-    return <BrowserRouter basename="/fines-shop-webapp.io">
+    return <BrowserRouter>
         <Routes>
 
             <Route element={<App />} path="/" />
