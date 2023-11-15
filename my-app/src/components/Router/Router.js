@@ -9,7 +9,7 @@ function Router() {
     return <BrowserRouter>
         <Routes>
 
-            <Route element={<App />} path="/" />
+            <Route element={<App />} path="/fines-shop-webapp.io/" />
             <Route element={<InfoDetail />} path="/infodetail" />
             <Route element={<BonusDetail />} path="/bonusdetail" />
             <Route element={<AccountDetail />} path="/accountdetail" />
