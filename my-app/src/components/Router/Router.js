@@ -6,15 +6,15 @@ import AccountDetail from '../screens/Account/AccountDetail.js'
 import AvaibilityDetail from '../screens/Avaibility/AvaibilityDetail.js'
 
 function Router() {
-    return <BrowserRouter>
+    return <BrowserRouter basename="/fines-shop-webapp.io">
         <Routes>
 
-        <Route element={<App />} path='/fines-shop-webapp.io/' />
-        <Route element={<InfoDetail />} path='/fines-shop-webapp.io/infodetail' />
-        <Route element={<BonusDetail />} path='/fines-shop-webapp.io/bonusdetail' />
-        <Route element={<AccountDetail />} path='/fines-shop-webapp.io/accountdetail' />
-        <Route element={<AvaibilityDetail />} path='/fines-shop-webapp.io/avaibilitydetail' />
-        <Route path='*' element={<div> Not found </div>} />
+            <Route element={<App />} path="/" />
+            <Route element={<InfoDetail />} path="/infodetail" />
+            <Route element={<BonusDetail />} path="/bonusdetail" />
+            <Route element={<AccountDetail />} path="/accountdetail" />
+            <Route element={<AvaibilityDetail />} path="/avaibilitydetail" />
+            <Route path="*" element={<div>Not found</div>} />
 
         </Routes>
     </BrowserRouter>
