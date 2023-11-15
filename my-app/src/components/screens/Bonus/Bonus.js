@@ -1,12 +1,14 @@
 import React from 'react'
 import styles from './Bonus.module.css'
-
+import { Link } from 'react-router-dom';
 
 function Bonus() {
     return (
-        <div className={styles.container}>
-            Бонусы
-        </div>
+        <Link to="/fines-shop-webapp.io/bonusdetail" className={styles.container}>
+                <div>
+                    Бонусы
+                </div>
+            </Link>
     )
 }
 
