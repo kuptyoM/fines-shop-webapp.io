@@ -10,10 +10,10 @@ function Router() {
         <Routes>
 
             <Route element={<App />} path="/fines-shop-webapp.io/" />
-            <Route element={<InfoDetail />} path="/infodetail" />
-            <Route element={<BonusDetail />} path="/bonusdetail" />
-            <Route element={<AccountDetail />} path="/accountdetail" />
-            <Route element={<AvaibilityDetail />} path="/avaibilitydetail" />
+            <Route element={<InfoDetail />} path="/fines-shop-webapp.io/infodetail" />
+            <Route element={<BonusDetail />} path="/fines-shop-webapp.io/bonusdetail" />
+            <Route element={<AccountDetail />} path="/fines-shop-webapp.io/accountdetail" />
+            <Route element={<AvaibilityDetail />} path="/fines-shop-webapp.io/avaibilitydetail" />
             <Route path="*" element={<div>Not found</div>} />
 
         </Routes>
