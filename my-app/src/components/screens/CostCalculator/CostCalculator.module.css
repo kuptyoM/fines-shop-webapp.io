@@ -1,0 +1,19 @@
+.container {
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+    height: 200px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    transition: all 1.2s ease;
+}
+
+.container:hover {
+    background-color: rgb(240, 208, 68);
+    font-size: 30px;
+    cursor: pointer;
+}

@@ -1,0 +1,19 @@
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    height: 85vh;
+    width: 600px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+}
+
+.secondContainer {
+    position: relative;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+}
