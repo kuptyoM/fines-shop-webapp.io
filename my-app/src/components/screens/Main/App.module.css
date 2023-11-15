@@ -1,8 +1,8 @@
 .container {
     margin-left: auto;
     margin-right: auto;
-    height: 85vh;
-    width: 600px;
+    height: 95vh;
+    width: 100%;
     border: 1px solid black;
     display: flex;
     flex-direction: column;

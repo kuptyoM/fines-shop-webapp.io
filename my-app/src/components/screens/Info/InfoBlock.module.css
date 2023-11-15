@@ -1,0 +1,14 @@
+.container {
+    height: 20%;
+    width: 100%;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 1.2s ease;
+}
+
+.container:hover {
+    cursor: pointer;
+    background-color: rgb(255, 200, 0);
+}

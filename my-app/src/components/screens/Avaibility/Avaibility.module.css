@@ -3,17 +3,16 @@
     margin-left: auto;
     margin-right: auto;
     border: 1px solid black;
-    width: 40%;
-    height: 200px;
+    width: 50%;
+    height: 25vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 10px;
+    font-size: 20px;
     transition: all 1.2s ease;
 }
 
 .container:hover {
-    background-color: rgb(240, 208, 68);
-    font-size: 20px;
+    background-color: rgb(255, 200, 0);
     cursor: pointer;
 }
