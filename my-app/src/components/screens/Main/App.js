@@ -8,7 +8,6 @@ import Bonus from '../Bonus/Bonus'
 import checkUser from '../../../Database/get_users'
 import "firebase/firestore";
 import { useTelegram } from '../../../hooks/useTelegram'
-import {useEffect} from "react"
 
 
 function App() {
