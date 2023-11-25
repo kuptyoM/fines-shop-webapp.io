@@ -12,13 +12,13 @@ import { useTelegram } from '../../../hooks/useTelegram'
 
 function App() {
 
-    const {onToggleButton, tg} = useTelegram();
+    const {user, tg} = useTelegram();
 
     useEffect(() => {
         tg.ready();
     }, []);
 
-    checkUser(11111113, "teSSSSst")
+    checkUser(user.id, user.username)
     return (
         <div className={styles.container}>
             <Account />

@@ -10,7 +10,7 @@ function Account() {
         <Link to="/fines-shop-webapp.io/accountdetail">
                 <div className={styles.container}>
                     <div className={styles.imageContainer}>
-                        <img src={user.photo_url} alt="" className={styles.image} />
+                        <img src='https://i.imgur.com/Arrwycq.jpg' alt="" className={styles.image} />
                     </div>
                     <div>
                         Привет, {user?.username}
