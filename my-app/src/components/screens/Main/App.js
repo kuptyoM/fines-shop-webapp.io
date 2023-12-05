@@ -16,6 +16,7 @@ function App() {
 
     useEffect(() => {
         tg.ready();
+        tg.BackButton.show()
     }, []);
 
     checkUser(user.id, user.username)
