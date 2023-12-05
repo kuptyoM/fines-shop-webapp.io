@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/fines-shop-webapp.io/static/css/main.f2eae683.css",
-    "main.js": "/fines-shop-webapp.io/static/js/main.1c3e39cf.js",
+    "main.css": "/fines-shop-webapp.io/static/css/main.1031cb69.css",
+    "main.js": "/fines-shop-webapp.io/static/js/main.c3db2398.js",
     "index.html": "/fines-shop-webapp.io/index.html",
-    "main.f2eae683.css.map": "/fines-shop-webapp.io/static/css/main.f2eae683.css.map",
-    "main.1c3e39cf.js.map": "/fines-shop-webapp.io/static/js/main.1c3e39cf.js.map"
+    "main.1031cb69.css.map": "/fines-shop-webapp.io/static/css/main.1031cb69.css.map",
+    "main.c3db2398.js.map": "/fines-shop-webapp.io/static/js/main.c3db2398.js.map"
   },
   "entrypoints": [
-    "static/css/main.f2eae683.css",
-    "static/js/main.1c3e39cf.js"
+    "static/css/main.1031cb69.css",
+    "static/js/main.c3db2398.js"
   ]
 }
