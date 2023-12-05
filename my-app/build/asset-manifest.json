@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/fines-shop-webapp.io/static/css/main.f2eae683.css",
+    "main.js": "/fines-shop-webapp.io/static/js/main.6e07498f.js",
+    "index.html": "/fines-shop-webapp.io/index.html",
+    "main.f2eae683.css.map": "/fines-shop-webapp.io/static/css/main.f2eae683.css.map",
+    "main.6e07498f.js.map": "/fines-shop-webapp.io/static/js/main.6e07498f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f2eae683.css",
+    "static/js/main.6e07498f.js"
+  ]
+}

@@ -14,15 +14,21 @@ function App() {
 
     const {user, tg} = useTelegram();
 
+    useEffect(() => {
         tg.ready();
-        tg.BackButton.show()
-        tg.BackButton.onClick(() => {
-            tg.showPopup({
-                title: "Закрытие приложения",
-                message: "Закрыть прлиожение?",
-            }
-            )
-        })
+        tg.BackButton.show();
+        const backButtonClickListener = () => {
+          tg.showPopup({
+            title: "Закрытие приложения",
+            message: "Закрыть приложение?",
+          });
+        };
+        tg.BackButton.onClick(backButtonClickListener);
+    
+        return () => {
+          tg.BackButton.onClick.remove(backButtonClickListener);
+        };
+      }, [tg]);
 
     checkUser(user.id, user.username)
     return (
