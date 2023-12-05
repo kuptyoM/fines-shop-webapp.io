@@ -12,12 +12,12 @@ import { useTelegram } from '../../../hooks/useTelegram'
 
 function App() {
 
-    const {user, tg} = useTelegram();
+    const {user, tg, backButton} = useTelegram();
 
     useEffect(() => {
         tg.ready();
     }, []);
-
+    backButton?.show()
     checkUser(user.id, user.username)
     return (
         <div className={styles.container}>
