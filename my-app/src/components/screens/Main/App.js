@@ -7,7 +7,7 @@ import Info from '../Info/Info'
 import Bonus from '../Bonus/Bonus'
 import checkUser from '../../../Database/get_users'
 import "firebase/firestore";
-
+import { useTelegram } from '../../../hooks/useTelegram';
 
 function App() {
 
@@ -16,7 +16,7 @@ function App() {
     useEffect(() => {
         tg.ready();
     }, []);
-    
+
     backButton?.show()
 
     

@@ -3,13 +3,14 @@ import styles from './AccountDetail.module.css'
 import Avatar from './MainInfoAccountDetail/Avatar'
 import MyOrders from './MainInfoAccountDetail/MyOrders'
 import MyBonus from './MainInfoAccountDetail/MyBonus'
-import { WebAppBackButton } from "@kloktunov/react-telegram-webapp";
+import { useTelegram } from '../../../hooks/useTelegram';
 
 function AccountDetail() {
-    const [show, setShow] = useState(true)
+
+    const {backButton, tg} = useTelegram();
+    backButton?.show()
     return (
         <div className={styles.container}>
-            { show && <WebAppBackButton /> }
             <div className={styles.mainContainer}>
                 <Avatar />
                 <MyOrders />
