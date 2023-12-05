@@ -4,7 +4,7 @@ import ProfitOffers from './ProfitOffers/ProfitOffers'
 import Collection from './Searching/Collection'
 import { useTelegram } from '../../../hooks/useTelegram'
 import { useNavigate } from "react-router-dom";
-
+import { useEffect } from 'react'
 
 function AvaibilityDetail() {
 

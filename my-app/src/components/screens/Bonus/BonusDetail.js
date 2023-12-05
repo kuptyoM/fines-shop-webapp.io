@@ -4,6 +4,7 @@ import BonusWheel from './BonusWheel'
 import BonusFooter from './BonusFooter/BonusFooter'
 import { useTelegram } from '../../../hooks/useTelegram'
 import { useNavigate } from "react-router-dom";
+import { useEffect } from 'react'
 
 function BonusDetail() {
     let navigate = useNavigate();

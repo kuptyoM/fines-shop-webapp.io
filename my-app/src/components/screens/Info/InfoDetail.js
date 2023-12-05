@@ -3,6 +3,7 @@ import styles from './InfoDetail.module.css'
 import InfoBlock from './InfoBlock'
 import { useTelegram } from '../../../hooks/useTelegram'
 import { useNavigate } from "react-router-dom";
+import { useEffect } from 'react'
 
 function InfoDetail() {
 
