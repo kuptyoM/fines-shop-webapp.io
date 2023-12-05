@@ -8,17 +8,17 @@ import Bonus from '../Bonus/Bonus'
 import checkUser from '../../../Database/get_users'
 import "firebase/firestore";
 import { useTelegram } from '../../../hooks/useTelegram'
-
+import { useHistory } from "react-router-dom";
 
 function App() {
-
+    let history = useHistory();
     const {user, tg} = useTelegram();
 
     useEffect(() => {
         tg.ready();
         tg.BackButton.show()
         tg.BackButton.onClick(() => {
-            tg.showAlert("BackButton clicked")
+            history.goBack()
         })
     }, []);
 
