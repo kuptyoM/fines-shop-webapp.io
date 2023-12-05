@@ -10,10 +10,11 @@ function Account() {
         <Link to="/fines-shop-webapp.io/accountdetail">
                 <div className={styles.container}>
                     <div className={styles.imageContainer}>
-                        <img src='https://i.imgur.com/Arrwycq.jpg' alt="" className={styles.image} />
+                        <img src='https://i.playground.ru/i/pix/716152/image.jpg'></img>
                     </div>
-                    <div>
-                        Привет, {user?.username}
+                    <div className={styles.infoContainer}>
+                        <div>n:{user?.username}</div>
+                        <div><img src='https://ae04.alicdn.com/kf/Sc87be4b6d5164616beed6639eb2bbb6bK.jpeg'className={styles.coinImage}></img>: 100</div>
                     </div>
                     
                 </div>

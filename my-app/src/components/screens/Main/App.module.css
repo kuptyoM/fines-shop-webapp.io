@@ -1,7 +1,7 @@
 .container {
     margin-left: auto;
     margin-right: auto;
-    height: var(--tg-viewport-stable-height);
+    /* height: var(--tg-viewport-stable-height); */
     width: 100%;
     border: 1px solid black;
     display: flex;

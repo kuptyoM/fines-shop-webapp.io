@@ -1,12 +1,14 @@
 import React from 'react'
 import styles from './MyOrders.module.css'
-
+import { Link } from 'react-router-dom';
 
 function MyOrders() {
     return (
-        <div className={styles.container}>
-            Мои заказы
-        </div>
+        <Link to="/fines-shop-webapp.io/accountdetail/myordersdetail" className={styles.container}>
+            <div>
+                Мои заказы
+            </div>
+        </Link>
     )
 }
 

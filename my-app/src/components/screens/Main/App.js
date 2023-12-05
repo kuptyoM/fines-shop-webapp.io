@@ -8,7 +8,7 @@ import Bonus from '../Bonus/Bonus'
 import checkUser from '../../../Database/get_users'
 import "firebase/firestore";
 import { useTelegram } from '../../../hooks/useTelegram'
-import { useNavigate } from "react-router-dom";
+
 
 function App() {
 
@@ -32,7 +32,7 @@ function App() {
         };
       }, [tg]);
 
-    checkUser(user.id, user.username)
+    // checkUser(user.id, user.username)
     return (
         <div className={styles.container}>
             <Account />
