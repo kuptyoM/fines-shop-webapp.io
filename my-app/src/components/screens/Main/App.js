@@ -18,7 +18,7 @@ function App() {
         tg.ready();
         tg.BackButton.show()
         tg.BackButton.onClick(() => {
-            tg.close()
+            tg.showAlert("BackButton clicked")
         })
     }, []);
 
