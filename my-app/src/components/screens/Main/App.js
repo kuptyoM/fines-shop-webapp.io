@@ -26,7 +26,7 @@ function App() {
         tg.BackButton.onClick(backButtonClickListener);
     
         return () => {
-          tg.BackButton.onClick.remove(backButtonClickListener);
+          tg.BackButton.offClick(backButtonClickListener);
         };
       }, [tg]);
 
