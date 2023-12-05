@@ -7,16 +7,18 @@ import Info from '../Info/Info'
 import Bonus from '../Bonus/Bonus'
 import checkUser from '../../../Database/get_users'
 import "firebase/firestore";
-import { TelegramWebApp, WebAppBackButton } from "@kloktunov/react-telegram-webapp";
+import { TelegramWebApp, useWebAppUser } from "@kloktunov/react-telegram-webapp";
 
 function App() {
+    const user = useWebAppUser();
+    // const {user, tg, backButton} = useTelegram();
 
-    const {user, tg, backButton} = useTelegram();
+    // useEffect(() => {
+    //     tg.ready();
+    // }, []);
+    // backButton?.show()
 
-    useEffect(() => {
-        tg.ready();
-    }, []);
-    backButton?.show()
+    
     checkUser(user.id, user.username)
     return (
         <TelegramWebApp>
