@@ -17,10 +17,9 @@ function App() {
         tg.ready();
     }, []);
 
-    backButton?.show()
 
     
-    checkUser(user.id, user.username)
+    // checkUser(user.id, user.username)
     return (
 
         <div className={styles.container}>

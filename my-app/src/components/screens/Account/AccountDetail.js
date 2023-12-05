@@ -7,8 +7,8 @@ import { useTelegram } from '../../../hooks/useTelegram';
 
 function AccountDetail() {
 
-    const {backButton, tg} = useTelegram();
-    backButton?.show()
+    const {tg} = useTelegram();
+    tg.backButton?.show()
     return (
         <div className={styles.container}>
             <div className={styles.mainContainer}>

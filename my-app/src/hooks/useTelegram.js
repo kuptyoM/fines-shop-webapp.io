@@ -15,7 +15,6 @@ export function useTelegram() {
     }
 
     return {
-        backButton: tg.backButton,
         onClose,
         onToggleButton,
         tg,
