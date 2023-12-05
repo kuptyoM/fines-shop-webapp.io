@@ -7,8 +7,7 @@ import Info from '../Info/Info'
 import Bonus from '../Bonus/Bonus'
 import checkUser from '../../../Database/get_users'
 import "firebase/firestore";
-import { useTelegram } from '../../../hooks/useTelegram'
-
+import { TelegramWebApp, WebAppBackButton } from "@kloktunov/react-telegram-webapp";
 
 function App() {
 
@@ -20,6 +19,7 @@ function App() {
     backButton?.show()
     checkUser(user.id, user.username)
     return (
+        <TelegramWebApp>
         <div className={styles.container}>
             <Account />
             <div className={styles.secondContainer}>
@@ -31,6 +31,7 @@ function App() {
                 <Bonus />
             </div>
         </div>
+        </TelegramWebApp>
     )
 }
 
