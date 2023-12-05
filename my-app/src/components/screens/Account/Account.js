@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './Account.module.css'
 import { Link } from 'react-router-dom';
-import { useTelegram } from '../../../hooks/useTelegram';
+import Telegram from 'telegram-web-app';
 
 
 function Account() {
-    const {user, onClose} = useTelegram();
+    const telegramApp = new Telegram.WebApp();
+    const user = telegramApp.initDataUnsafe?.user
+    useEffect(() => {
+        telegramApp.ready();
+    }, []);
+
     return (
         <Link to="/fines-shop-webapp.io/accountdetail">
                 <div className={styles.container}>
@@ -13,7 +18,7 @@ function Account() {
                         <img src='https://i.imgur.com/Arrwycq.jpg' alt="" className={styles.image} />
                     </div>
                     <div>
-                        Привет, {user?.username}
+                        Привет, {user.username}
                     </div>
                     
                 </div>

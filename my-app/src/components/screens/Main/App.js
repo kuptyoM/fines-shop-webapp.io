@@ -7,14 +7,13 @@ import Info from '../Info/Info'
 import Bonus from '../Bonus/Bonus'
 import checkUser from '../../../Database/get_users'
 import "firebase/firestore";
-import { useTelegram } from '../../../hooks/useTelegram';
+import Telegram from 'telegram-web-app';
 
 function App() {
-
-    const {user, tg, backButton} = useTelegram();
-
+    const telegramApp = new Telegram.WebApp();
+    const user = telegramApp.initDataUnsafe?.user
     useEffect(() => {
-        tg.ready();
+        telegramApp.ready();
     }, []);
 
 
