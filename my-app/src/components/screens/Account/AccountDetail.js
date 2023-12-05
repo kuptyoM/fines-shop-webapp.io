@@ -12,10 +12,20 @@ function AccountDetail() {
     let navigate = useNavigate();
     const {tg} = useTelegram();
 
+    useEffect(() => {
+        tg.ready();
         tg.BackButton.show();
-        tg.BackButton.onClick(() => {
-            navigate('/fines-shop-webapp.io/', {replace: true});
-        })
+        const backButtonClickListener = () => {
+            tg.BackButton.onClick(() => {
+                navigate('/fines-shop-webapp.io/', {replace: true});
+            })
+        };
+        tg.BackButton.onClick(backButtonClickListener);
+    
+        return () => {
+          tg.BackButton.offClick(backButtonClickListener);
+        };
+      }, [tg]);
     
     return (
         <div className={styles.container}>

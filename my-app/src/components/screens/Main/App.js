@@ -18,9 +18,10 @@ function App() {
         tg.ready();
         tg.BackButton.show();
         const backButtonClickListener = () => {
-          tg.showPopup({
-            title: "Закрытие приложения",
-            message: "Закрыть приложение?",
+          tg.showConfirm("Закрыть приложение?", (arg) => {
+            if (arg) {
+              tg.close()
+            }
           });
         };
         tg.BackButton.onClick(backButtonClickListener);

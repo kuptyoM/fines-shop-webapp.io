@@ -1,8 +1,29 @@
 import React from 'react'
 import styles from './InfoDetail.module.css'
 import InfoBlock from './InfoBlock'
+import { useTelegram } from '../../../hooks/useTelegram'
+import { useNavigate } from "react-router-dom";
 
 function InfoDetail() {
+
+    let navigate = useNavigate();
+    const {tg} = useTelegram();
+
+    useEffect(() => {
+        tg.ready();
+        tg.BackButton.show();
+        const backButtonClickListener = () => {
+            tg.BackButton.onClick(() => {
+                navigate('/fines-shop-webapp.io/', {replace: true});
+            })
+        };
+        tg.BackButton.onClick(backButtonClickListener);
+    
+        return () => {
+          tg.BackButton.offClick(backButtonClickListener);
+        };
+      }, [tg]);
+
     return (
         <div className={styles.mainContainer}>
             <div className={styles.title}>
