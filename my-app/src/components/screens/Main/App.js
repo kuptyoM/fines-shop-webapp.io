@@ -14,22 +14,23 @@ function App() {
 
     const {user, tg} = useTelegram();
 
-    useEffect(() => {
-        tg.ready();
-        tg.BackButton.show();
-        const backButtonClickListener = () => {
-          tg.showConfirm("Закрыть приложение?", (arg) => {
-            if (arg) {
-              tg.close()
-            }
-          });
-        };
-        tg.BackButton.onClick(backButtonClickListener);
+    // useEffect(() => {
+    //     tg.ready();
+    //     tg.BackButton.show();
+    //     const backButtonClickListener = () => {
+    //       tg.showConfirm("Закрыть приложение?", (arg) => {
+    //         if (arg) {
+    //           tg.close()
+    //         }
+    //       });
+    //     };
+    //     tg.BackButton.onClick(backButtonClickListener);
     
-        return () => {
-          tg.BackButton.offClick(backButtonClickListener);
-        };
-      }, [tg]);
+    //     return () => {
+    //       tg.BackButton.offClick(backButtonClickListener);
+    //     };
+    //   }, [tg]);
+    tg.enableClosingConfirmation()
 
     checkUser(user.id, user.username)
     return (
