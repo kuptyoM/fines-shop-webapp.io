@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import styles from './App.module.css'
-import CostCalculator from '../CostCalculator/CostCalculator'
 import Account from '../Account/Account'
 import Avaibility from '../Avaibility/Avaibility'
 import Info from '../Info/Info'
@@ -8,6 +7,7 @@ import Bonus from '../Bonus/Bonus'
 import checkUser from '../../../Database/get_users'
 import "firebase/firestore";
 import { useTelegram } from '../../../hooks/useTelegram'
+import MakeOrder from '../MakeOrder/MakeOrder'
 
 
 function App() {
@@ -37,7 +37,7 @@ function App() {
         <div className={styles.container}>
             <Account />
             <div className={styles.secondContainer}>
-                <CostCalculator />
+                <MakeOrder />
                 <Avaibility />
             </div>
             <div className={styles.secondContainer}>
@@ -49,3 +49,4 @@ function App() {
 }
 
 export default App
+

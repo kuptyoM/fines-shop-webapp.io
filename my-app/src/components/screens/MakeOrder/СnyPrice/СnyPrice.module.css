@@ -1,0 +1,11 @@
+.container {
+    /* border: 1px solid black; */
+    width: 80%;
+}
+
+.price__input {
+    width: 200px;
+    border: none;
+    padding: 0 0;
+    height: 20px;
+}

@@ -6,7 +6,7 @@ function Avatar() {
     return (
         <div className={styles.container}>
             <div className={styles.avatar}>
-                <img src='https://i.playground.ru/i/pix/716152/image.jpg'></img>
+                <img src='https://i.playground.ru/i/pix/716152/image.jpg' className={styles.avatarImg}></img>
             </div>
         </div>
     )

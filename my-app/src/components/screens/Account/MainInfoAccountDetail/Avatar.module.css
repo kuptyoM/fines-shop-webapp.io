@@ -16,7 +16,7 @@
     align-items: center;
 }
 
-img {
+.avatarImg {
     object-fit: cover;
     object-position: top center;
     border-radius:50%;
