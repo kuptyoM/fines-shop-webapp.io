@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import styles from './App.module.css'
 import Account from '../Account/Account'
 import Avaibility from '../Avaibility/Avaibility'
-import Info from '../Info/Info'
+import Basket from '../Basket/Basket'
 import Bonus from '../Bonus/Bonus'
 import checkUser from '../../../Database/get_users'
 import "firebase/firestore";
@@ -41,7 +41,7 @@ function App() {
                 <Avaibility />
             </div>
             <div className={styles.secondContainer}>
-                <Info />
+                <Basket />
                 <Bonus />
             </div>
         </div>

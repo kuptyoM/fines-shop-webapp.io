@@ -6,7 +6,12 @@ function Item({photo, name, price}) {
     return (
         <div className={styles.container}>
             <img src={photo} className={styles.collectionImg}></img>
-            {name} цена:{price}
+            {name} 
+            <br/> цена:{price}
+            <div>
+                <button>Подробнее</button>
+            </div>
+            
         </div>
     )
 }

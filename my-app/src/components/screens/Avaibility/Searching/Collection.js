@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './Collection.module.css'
 import Item from './Item'
 import getCollectionItems from '../../../../Database/get_collection_items'
+import ProductCard from '../../../ProductCard/ProductCard';
 
 
 function Collection() {
@@ -42,7 +43,7 @@ function Collection() {
             <div className={styles.secondContainer}>
                 <div className={styles.collectionContainer}>
                     {filteredItems.map((item, index) => (
-                        <Item key={index} name={item.Name} photo={item.Photo} price={item.Price} />
+                        <ProductCard key={index} name={item.Name} photo={item.Photo} price={item.Price} id={item.Id}/>
                     ))}
                 </div>
                 </div>
