@@ -14,9 +14,7 @@ function BonusDetail() {
         tg.ready();
         tg.BackButton.show();
         const backButtonClickListener = () => {
-            tg.BackButton.onClick(() => {
-                navigate('/fines-shop-webapp.io/', {replace: true});
-            })
+            navigate(-1, {replace: true});
         };
         tg.BackButton.onClick(backButtonClickListener);
     
