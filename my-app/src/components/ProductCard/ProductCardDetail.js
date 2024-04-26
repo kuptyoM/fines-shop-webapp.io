@@ -8,7 +8,6 @@ import addToBasket from '../../Database/add_to_basket'
 
 
 function ProductCardDetail() {
-
     let navigate = useNavigate();
     const {tg} = useTelegram();
     const [data, setData] = useState({})
@@ -32,16 +31,14 @@ function ProductCardDetail() {
         tg.ready();
         tg.BackButton.show();
         const backButtonClickListener = () => {
-            tg.BackButton.onClick(() => {
-                navigate(-1);
-            })
+            navigate(-1, {replace: true});
         };
         tg.BackButton.onClick(backButtonClickListener);
     
         return () => {
           tg.BackButton.offClick(backButtonClickListener);
         };
-      }, []);
+      }, [tg]);
 
     return (
         <div className={styles.container}>
