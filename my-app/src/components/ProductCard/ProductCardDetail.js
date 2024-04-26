@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { useTelegram } from '../../../hooks/useTelegram'
+import { useTelegram } from '../../hooks/useTelegram';
 import { useNavigate } from "react-router-dom";
 import styles from './ProductCardDetail.module.css'
 import { useParams } from 'react-router-dom'
 import getItemInfo from '../../Database/get_item_info'
 import addToBasket from '../../Database/add_to_basket'
-import addUser from '../../Database/users_firebase'
 
-let navigate = useNavigate();
-const {tg} = useTelegram();
 
 function ProductCardDetail() {
 
+    let navigate = useNavigate();
+    const {tg} = useTelegram();
     const [data, setData] = useState({})
     let arrForData = {}
     const { productId } = useParams()
