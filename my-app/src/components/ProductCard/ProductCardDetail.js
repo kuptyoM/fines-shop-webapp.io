@@ -41,7 +41,7 @@ function ProductCardDetail() {
         return () => {
           tg.BackButton.offClick(backButtonClickListener);
         };
-      }, [tg]);
+      }, []);
 
     return (
         <div className={styles.container}>
