@@ -33,7 +33,7 @@ function ProductCardDetail() {
         tg.BackButton.show();
         const backButtonClickListener = () => {
             tg.BackButton.onClick(() => {
-                navigate(-1, {replace: true});
+                navigate(-1);
             })
         };
         tg.BackButton.onClick(backButtonClickListener);
