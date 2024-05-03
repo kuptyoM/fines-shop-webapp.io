@@ -11,11 +11,11 @@ function ProductCardDetail() {
     let navigate = useNavigate();
     const {tg} = useTelegram();
     const [data, setData] = useState({})
-    let arrForData = {}
+    let objForData = {}
     const { productId } = useParams()
     useEffect(() => {
         if (productId) {
-            getItemInfo(productId, arrForData)
+            getItemInfo(productId, objForData)
             .then((result) => {
                 setData(result);
             })
@@ -40,6 +40,14 @@ function ProductCardDetail() {
         };
       }, [tg]);
 
+      const navigateToPurchase = () => {
+        navigate('/fines-shop-webapp.io/purchasescreen', {
+            state: {
+                itemsInfo: [data],
+                finalPrice: data.Price,
+            }
+        })
+    }
     return (
         <div className={styles.container}>
             <img src={data.Photo} className={styles.productImg}></img>
@@ -47,9 +55,8 @@ function ProductCardDetail() {
             <br/> цена:{data.Price}
             <br/> описание:
             <div>
-                <button>выбор получателя</button>
                 <button onClick={handleClickBasket}>корзина</button>
-                <button>купить сейчас</button>
+                <button onClick={navigateToPurchase}>купить сейчас</button>
             </div>
         </div>
     )

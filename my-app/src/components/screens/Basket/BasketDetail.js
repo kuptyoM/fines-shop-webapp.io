@@ -55,14 +55,22 @@ function BasketDetail() {
             getProductInfo()
         }, [itemsId])
 
+        const navigateToPurchase = () => {
+            navigate('/fines-shop-webapp.io/purchasescreen', {
+                state: {
+                    itemsInfo: itemsInfo, 
+                    finalPrice: finalPrice}
+            })
+        }
+
     return (
         <div className={styles.container}>
             <div>Количество товаров: {itemsId ? itemsId.length : 0}</div>
-            {itemsInfo.map((item, index) => (
+            {itemsInfo.map((item, index) => ( 
                 <ProductCard key={index} name={item.Name} photo={item.Photo} price={item.Price} id={item.Id}/>
             ))}
         <div>{finalPrice ? `Итоговая стоимость: ${finalPrice}` : ''}</div>
-        <div><button>купить сейчас</button></div>
+        <button onClick={navigateToPurchase} items={itemsInfo}>купить сейчас</button>
         </div>
     )
 }

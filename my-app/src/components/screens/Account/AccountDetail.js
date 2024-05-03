@@ -5,6 +5,7 @@ import MyOrders from './MainInfoAccountDetail/MyOrders'
 import MyBonus from './MainInfoAccountDetail/MyBonus'
 import { useTelegram } from '../../../hooks/useTelegram'
 import { useNavigate } from "react-router-dom";
+import MakeReceiver from '../СhooseReceiver/MakeReceiver'
 
 
 function AccountDetail() {
@@ -30,7 +31,9 @@ function AccountDetail() {
             <div className={styles.mainContainer}>
                 <Avatar />
                 <MyOrders />
+                <MakeReceiver />
                 <MyBonus />
+                
             </div>
         </div>
     )

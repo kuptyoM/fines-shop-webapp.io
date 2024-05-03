@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styles from './TotalCost.module.css'
 
-function TotalCost( { sharedCategory, sharedPriceValue } ) {
+function TotalCost( { sharedCategory, sharedPriceValue, setFinalPrice} ) {
     const [addedPrice, setAddedPrice] = useState(0);
 
     const categoryPrice = {
@@ -18,11 +18,18 @@ function TotalCost( { sharedCategory, sharedPriceValue } ) {
     }, [sharedCategory]);
 
     let cnyCourse = 13.2;
+
+    useEffect(() => {
+
+        const total = Math.round(sharedPriceValue * cnyCourse) + addedPrice;
+        setFinalPrice(total); 
+
+    }, [sharedCategory, sharedPriceValue, setFinalPrice]);
     return (
         <div className={styles.container}>
             <h3>Итоговая стоимость</h3>
             <div className={styles.cost}>
-                {sharedPriceValue * 13.2 ? Math.round(sharedPriceValue * cnyCourse) + addedPrice : ''} 
+                {sharedPriceValue * cnyCourse ? Math.round(sharedPriceValue * cnyCourse) + addedPrice : ''} 
                 </div>
         </div>
     )

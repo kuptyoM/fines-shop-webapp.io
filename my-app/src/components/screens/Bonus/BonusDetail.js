@@ -27,7 +27,7 @@ function BonusDetail() {
         <div className={styles.container}>
             <div className={styles.mainContainer}>
                 <BonusWheel />
-                <BonusFooter />
+                {/* <BonusFooter /> */}
             </div>
             <div className={styles.secondContainer}>
                 Получить попытку
