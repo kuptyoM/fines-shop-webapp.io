@@ -3,12 +3,13 @@ import styles from './BasketDetail.module.css'
 import { useTelegram } from '../../../hooks/useTelegram'
 import { useNavigate } from "react-router-dom";
 import { useEffect } from 'react'
-import ProductCard from '../../ProductCard/ProductCard';
 import getItemsId from '../../../Database/get_items_id';
+import { db } from '../../../Database/firebase';
+import { doc, deleteDoc, collection, query, where, getDocs} from "firebase/firestore";
+import BasketProductCard from '../../ProductCard/BasketProductCard';
 import getItemInfo from '../../../Database/get_item_info';
 
 function BasketDetail() {
-    const [itemsId, setItemsId] = useState([]);
     const [itemsInfo, setItemsInfo] = useState([]);
     const [finalPrice, setFinalPrice] = useState();
     let navigate = useNavigate();
@@ -27,34 +28,23 @@ function BasketDetail() {
         };
       }, [tg]);
 
-
       useEffect(() => {
-            getItemsId()
-            .then((result) => {
-                setItemsId(result)
-            })
-        }, [])
-
+        setItemsInfo([])
+        let totalPrice = 0;
+        async function getItems() {
+            const ref = collection(db, "users", "6254429205", "basket");
+            const q = query(ref)
+            const querySnapshot = await getDocs(q);
+            querySnapshot.forEach((doc) => {
+                setItemsInfo(oldArr => [...oldArr, doc.data()])
+                totalPrice += doc.data().price
+                setFinalPrice(totalPrice)
+            });
+          }
+          getItems()
     
-        useEffect(() => {
-            const getProductInfo = async () => {
-                try {
-                let productData = [];
-                let price = 0;
-                for (let id of itemsId) {
-                    const response = await getItemInfo(String(id))
-                    price += response.Price
-                    productData.push(response)
-                }
-                setItemsInfo(productData)
-                setFinalPrice(price)
-            } catch (error) {
-                console.error('error', error)
-            }
-        };
-            getProductInfo()
-        }, [itemsId])
-
+      }, [finalPrice])
+      
         const navigateToPurchase = () => {
             navigate('/fines-shop-webapp.io/purchasescreen', {
                 state: {
@@ -62,15 +52,48 @@ function BasketDetail() {
                     finalPrice: finalPrice}
             })
         }
+        function deleteButton(deleteItem) {
+ 
+            async function getDocId(itemId) {
+                const myref = collection(db, "users", "6254429205", "basket");
+                const q = query(myref, where("id", "==", itemId))
+                const querySnapshot = await getDocs(q);
+                return querySnapshot.docs[0].id
+              }
+            setFinalPrice(finalPrice - deleteItem.price)
+            getDocId(deleteItem.id)
+            .then((docId) => {
 
+                const ref = doc(db, "users", "6254429205", "basket", docId)
+                deleteDoc(ref)
+            })
+            
+        };
+    
+        
     return (
         <div className={styles.container}>
-            <div>Количество товаров: {itemsId ? itemsId.length : 0}</div>
-            {itemsInfo.map((item, index) => ( 
-                <ProductCard key={index} name={item.Name} photo={item.Photo} price={item.Price} id={item.Id}/>
-            ))}
+            <div>Количество товаров: {itemsInfo ? itemsInfo.length : 0}</div>
+            {itemsInfo.map((item, index) => {
+            const key = item.id || index; 
+            return (
+                item.link ?
+                <div className={styles.basketItem} key={key}>
+                    <div className={styles.poizonInfo}>
+                        <p>poizon: {item.link}</p>
+                        <p>price: {item.price}</p>
+                    </div>
+                    <button onClick={() => deleteButton(item)}>Удалить из корзины</button>
+                </div>
+                :
+                <div className={styles.basketItem} key={key}>
+                    <BasketProductCard key={index} name={item.name} price={item.price} size={item.size} />
+                    <button onClick={() => deleteButton(item)}>Удалить из корзины</button>
+                </div>
+                );
+            })}
         <div>{finalPrice ? `Итоговая стоимость: ${finalPrice}` : ''}</div>
-        <button onClick={navigateToPurchase} items={itemsInfo}>купить сейчас</button>
+        <button onClick={navigateToPurchase} >купить сейчас</button>
         </div>
     )
 }

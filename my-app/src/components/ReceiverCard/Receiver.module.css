@@ -1,0 +1,14 @@
+.container {
+    height: 150px;
+    width: 350px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    padding-left: 20px;
+}
+
+.mybutton {
+    height: 50px;
+    width: 100px;
+}

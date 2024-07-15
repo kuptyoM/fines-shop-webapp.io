@@ -1,7 +1,8 @@
 import {db} from './firebase';
 import { doc, getDoc } from "firebase/firestore";
 
-async function getItemInfo(id, item_info) {
+async function getItemInfo(id) {
+    let item_info = {}
     const docRef = doc(db, "items", "available", "goods", id);
     const docSnap = await getDoc(docRef);
 

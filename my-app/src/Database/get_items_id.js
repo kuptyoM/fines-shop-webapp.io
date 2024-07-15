@@ -1,17 +1,13 @@
 import {db} from './firebase';
-import { doc, getDoc } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 
-async function getItemsId(ids) {
+async function getItemsId() {
     let arrForIds = [];
-    const docRef = doc(db, "users", "6254429205", "basket", "basket_info");
-    const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-        arrForIds = docSnap.data().items_id;
-    }
-
-    return arrForIds;
-
+    const querySnapshot = await getDocs(collection(db, "users", "6254429205", "basket"));
+    querySnapshot.forEach((doc) => {
+        arrForIds.push(doc.data().id)
+      });
+    return arrForIds
 }
 
 export default getItemsId;

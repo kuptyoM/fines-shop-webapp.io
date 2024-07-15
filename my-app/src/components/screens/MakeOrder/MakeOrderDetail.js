@@ -5,8 +5,8 @@ import СnyPrice from './СnyPrice/СnyPrice'
 import TotalCost from './TotalCost/TotalCost'
 import { useTelegram } from '../../../hooks/useTelegram'
 import { useNavigate } from "react-router-dom";
-
-
+import addToBasket from '../../../Database/add_to_basket'
+import test from '../../../Database/test'
 
 function MakeOrderDetail() {
     const [sharedCategory, setSharedCategory] = useState('')
@@ -15,6 +15,8 @@ function MakeOrderDetail() {
     const [finalPrice, setFinalPrice] = useState(0)
     let navigate = useNavigate();
     const {tg} = useTelegram();
+
+    test()
 
     useEffect(() => {
         tg.ready();
@@ -33,11 +35,18 @@ function MakeOrderDetail() {
         if (link) {
         navigate('/fines-shop-webapp.io/purchasescreen', {
             state: {
-                itemsInfo: [{Name: `заказ poizon ${link}`}],
+                itemsInfo: [{name: `заказ poizon ${link}`, link: link, price: finalPrice}],
                 finalPrice: finalPrice,
             }
         })
         };
+    }
+
+    function handleBasketClick() {
+        addToBasket({
+            link: link,
+            price: finalPrice
+        })
     }
 
     
@@ -55,7 +64,7 @@ function MakeOrderDetail() {
             >
             </input>
             <button className={styles.myButton} onClick={navigateToPurchase}>Купить сейчас</button>
-            {/* <button className={styles.myButton} onClick={handleBasketClick}>Добавить в корзину</button> */}
+            <button className={styles.myButton} onClick={handleBasketClick}>Добавить в корзину</button>
         </div>
     )
 }

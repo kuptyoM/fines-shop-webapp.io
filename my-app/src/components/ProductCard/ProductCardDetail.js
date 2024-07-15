@@ -8,11 +8,16 @@ import addToBasket from '../../Database/add_to_basket'
 
 
 function ProductCardDetail() {
+
     let navigate = useNavigate();
     const {tg} = useTelegram();
+
     const [data, setData] = useState({})
+    const [selectedSize, setSelectedSize] = useState('');
+
     let objForData = {}
     const { productId } = useParams()
+
     useEffect(() => {
         if (productId) {
             getItemInfo(productId, objForData)
@@ -23,9 +28,22 @@ function ProductCardDetail() {
         };
     }, [productId])
 
+    console.log(data)
+    
     function handleClickBasket() {
-        addToBasket(Number(productId))
+        if (selectedSize) {
+            addToBasket({
+            id: data.id,
+            name: data.name,
+            price: data.price,
+            size: selectedSize,
+        })
+        }
     }
+
+    const handleSizeChange = (event) => {
+        setSelectedSize(event.target.value);
+      };
 
     useEffect(() => {
         tg.ready();
@@ -41,19 +59,33 @@ function ProductCardDetail() {
       }, [tg]);
 
       const navigateToPurchase = () => {
+        if (selectedSize) {
         navigate('/fines-shop-webapp.io/purchasescreen', {
             state: {
-                itemsInfo: [data],
-                finalPrice: data.Price,
+                itemsInfo: [{
+                    id: data.id,
+                    name: data.name,
+                    price: data.price,
+                    size: selectedSize,
+                }],
+                finalPrice: data.price,
             }
         })
+        }
     }
+
     return (
         <div className={styles.container}>
-            <img src={data.Photo} className={styles.productImg}></img>
-            {data.Name} 
-            <br/> цена:{data.Price}
-            <br/> описание:
+            {data && data.imageUrls && <img src={data.imageUrls[0]} className={styles.productImg} />}
+            {data.name} 
+            <br/> цена:{data.price}
+            <br/> описание: {data.description}
+            <select value={selectedSize} onChange={handleSizeChange}>
+                <option value="">Выберите размер</option>
+                {data.sizes && data.sizes.map((size) => (
+                    <option key={size} value={size}>{size}</option>
+                ))} 
+            </select>
             <div>
                 <button onClick={handleClickBasket}>корзина</button>
                 <button onClick={navigateToPurchase}>купить сейчас</button>

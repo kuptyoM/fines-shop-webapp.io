@@ -11,8 +11,8 @@ function PurchaseScreen() {
     const {tg} = useTelegram();
 
     const location = useLocation()
-    let itemsInfo = location.state.itemsInfo
-    let finalPrice = location.state.finalPrice
+
+    const { itemsInfo, finalPrice } = location.state || {};
 
     const [dropdownStatus, setDropdownStatus] = useState(false);
     const [receivers, setReceivers] = useState([]);
@@ -52,12 +52,21 @@ function PurchaseScreen() {
         setDropdownStatus(!dropdownStatus)
     }
 
+    function handlePayClick() {
+        navigate(`/fines-shop-webapp.io/paymentscreen/${choosedReceiver}`, {
+            state: {
+                itemsInfo: itemsInfo,
+                finalPrice: finalPrice,
+            }
+        })
+    }
+
     return (
         <div>
             <h1>покупаемые предметы: 
                 <ul>
                 {itemsInfo.map((item,index) => (
-                    <li key={index}>{item.Name}</li>
+                    <li key={index}>{item.name}, {item.size}</li>
                 ))} 
                 </ul>
             </h1>
@@ -74,7 +83,7 @@ function PurchaseScreen() {
                 )) : <button onClick={handleReceiverClick}>еще нет получателя? создать получателя</button>}
             </ul> : ''}
             <br/>
-            <strong>оплатить</strong>
+            <button onClick={handlePayClick}>Оплатить</button>
         </div>
     )
 }
