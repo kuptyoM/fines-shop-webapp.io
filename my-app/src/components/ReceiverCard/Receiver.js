@@ -26,7 +26,7 @@ function Receiver({city, fio, phone, street}) {
                 <p>Телефон: {phone}</p>
                 <p>Улица: {street}</p>
             </div>
-            <button onClick={deleteButton} className={styles.mybutton}>удалить пользователя</button>
+            <button onClick={deleteButton} className={styles.mybutton}>удалить получателя</button>
         </div>
     );
 }

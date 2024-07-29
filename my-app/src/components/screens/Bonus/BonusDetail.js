@@ -37,3 +37,4 @@ function BonusDetail() {
 }
 
 export default BonusDetail
+
