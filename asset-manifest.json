@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/fines-shop-webapp/static/css/main.caabc127.css",
+    "main.js": "/fines-shop-webapp/static/js/main.8f2329aa.js",
+    "index.html": "/fines-shop-webapp/index.html",
+    "main.caabc127.css.map": "/fines-shop-webapp/static/css/main.caabc127.css.map",
+    "main.8f2329aa.js.map": "/fines-shop-webapp/static/js/main.8f2329aa.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.caabc127.css",
+    "static/js/main.8f2329aa.js"
+  ]
+}
