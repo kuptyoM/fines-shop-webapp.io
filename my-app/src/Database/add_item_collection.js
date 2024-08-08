@@ -11,7 +11,7 @@ async function addToCollection(productData) {
             price: productData.price,
             quantity: productData.quantity,
             imageUrls: productData.imageUrls,
-            sizes: productData.sizes
+            sizes: productData.size
         });
 
 }

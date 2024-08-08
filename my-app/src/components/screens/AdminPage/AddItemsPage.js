@@ -1,15 +1,50 @@
 import React, { useEffect, useState } from 'react'
 import addToCollection from '../../../Database/add_item_collection'
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { storage } from '../../../Database/firebase';
 
 function AddItemsPage() {
-    
+    const [files, setFiles] = useState([]);
     const [itemData, setItemData] = useState({})
     const [name, setName] = useState('')
     const [price, setPrice] = useState(0)
-    const [imageUrls, setImageUrls] = useState([])
-    const [size, setSize] = useState([])
+    const [size, setSize] = useState('')
     const [description, setDescription] = useState('')
     const [quantity, setQuantity] = useState(0)
+    const [imageUrls, setImageUrls] = useState([])
+
+    const handleFileChange = (event) => {
+        setFiles(event.target.files);
+    };
+
+    const handleUpload = async () => {
+        if (files.length === 0) {
+            alert("Пожалуйста, выберите файлы для загрузки.");
+            return;
+        }
+
+        const promises = [];
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            const storageRef = ref(storage, `images/${file.name}`);
+            
+            const uploadPromise = uploadBytes(storageRef, file)
+                .then(() => getDownloadURL(storageRef))
+                .then((url) => {
+                    setImageUrls(prev => [...prev, url]); 
+                });
+
+            promises.push(uploadPromise); 
+        }
+
+        try {
+            await Promise.all(promises)
+            console.log("Все файлы успешно загружены!");
+        } catch (error) {
+            console.error("Ошибка при загрузке файлов: ", error);
+            console.log("Произошла ошибка при загрузке файлов.");
+        }
+    };
 
     const submit = e => {
         e.preventDefault();
@@ -31,33 +66,17 @@ function AddItemsPage() {
             addToCollection(itemData)
         }
       }, [itemData])
+    
+    useEffect(() => {
+        console.log(imageUrls, imageUrls[0])
+    }, [imageUrls])
 
-    //   setItemData({
-    //     name: 'AirJordan5',
-    //     price: 1700,
-    //     imageUrls: ['https://ir.ozone.ru/s3/multimedia-0/c1000/6651312480.jpg', 'https://i.ytimg.com/vi/675D4qtnxA0/maxresdefault.jpg'],
-    //     sizes: [44,45,46],
-    //     description: 'FAKE FAKE FAKE',
-    //     quantity: quantity
-    // });
-
-
-    // addToCollection({
-    //     name: 'AirJordan5',
-    //     price: 1700,
-    //     imageUrls: ['https://ir.ozone.ru/s3/multimedia-0/c1000/6651312480.jpg', 'https://i.ytimg.com/vi/675D4qtnxA0/maxresdefault.jpg'],
-    //     sizes: [44,45,46],
-    //     description: 'FAKE FAKE FAKE',
-    //     quantity: 1
-    // })
     return (
             <div>
                 <h1>NeW iTeM iNfO</h1>
                 <form onSubmit={submit}>
                 <label id="name">Name</label>
                 <input type="text" id="name" onChange={event => setName(event.target.value)}/>
-                <label for="photo">PhotoUrl</label>
-                <input type="text" id="photo" onChange={event => setImageUrls(event.target.value)}/>
                 <label for="price">Price</label>
                 <input type="number" id="price" onChange={event => setPrice(event.target.value)}/>
                 <label for="size">Size</label>
@@ -66,10 +85,16 @@ function AddItemsPage() {
                 <input type="text" id="description" onChange={event => setDescription(event.target.value)}/>
                 <label for="quantity">Quantity</label>
                 <input type="number" id="quantity" onChange={event => setQuantity(event.target.value)}/>
-                <button>Сохранить</button>
+                <div>
+                    <h2>Загрузка нескольких файлов</h2>
+                    <input type="file" multiple onChange={handleFileChange} />
+                    <button onClick={handleUpload} type='button'>Загрузить</button>
+                </div>
+                <button type='submit'>Сохранить</button>
                 </form>
             </div>
     )
 }
 
 export default AddItemsPage
+
