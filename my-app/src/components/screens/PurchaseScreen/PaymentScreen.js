@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom'
 
 import { db } from '../../../Database/firebase';
 import { collection, getDocs, query, addDoc, doc, deleteDoc } from "firebase/firestore";
+import deletePurchasedSize from './delete_purchased_size';
 
 function PaymentScreen() {
     const location = useLocation()
@@ -13,7 +14,7 @@ function PaymentScreen() {
     const { itemsInfo } = location.state || {};
     const [password, setPassword] = useState('');
     const [showed, isShowed] = useState(false);
-
+  console.log(itemsInfo)
     const [isDisabled, setIsDisabled] = useState(false)
 
     let navigate = useNavigate();
@@ -37,6 +38,10 @@ function PaymentScreen() {
       const submit = e => {
         e.preventDefault()
         if (password !== 'Zebra') return;
+
+        itemsInfo.forEach((item) => {
+          deletePurchasedSize(item.id, item.size)
+        })
 
         isShowed(true);
         const products = [];
@@ -64,10 +69,12 @@ function PaymentScreen() {
           receiver: receiverId,
           user_id: "6254429205",
           products: products,
+          createdAt: new Date()
         }).then(() => {
           addDoc(collection(db, "users", "6254429205", "user_orders"), {
             receiver: receiverId,
             products: products,
+            createdAt: new Date()
           });
 
           if (itemsInfo[1]) {

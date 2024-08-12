@@ -13,6 +13,7 @@ import PurchaseScreen from '../screens/PurchaseScreen/PurchaseScreen.js'
 import ReceiversPageDetail from '../screens/ReceiversPage/ReceiversPageDetail.js'
 import AddItemsPage from '../screens/AdminPage/AddItemsPage.js'
 import PaymentScreen from '../screens/PurchaseScreen/PaymentScreen.js'
+import AddSliderItemsPage from '../screens/AdminPage/AddSliderItems.js'
 
 function Router() {
     return <BrowserRouter>
@@ -31,6 +32,7 @@ function Router() {
             <Route element={<MakeReceiverDetail />} path="/fines-shop-webapp.io/makereceiverdetail" />
             <Route element={<PurchaseScreen />} path="/fines-shop-webapp.io/purchasescreen" />
             <Route element={<AddItemsPage />} path="/fines-shop-webapp.io/admin/additemspage" />
+            <Route element={<AddSliderItemsPage />} path="/fines-shop-webapp.io/admin/addslideritemspage" />
             <Route element={<PaymentScreen />} path="/fines-shop-webapp.io/paymentscreen/:receiverId" />
             <Route path="*" element={<div>Not found</div>} />
 

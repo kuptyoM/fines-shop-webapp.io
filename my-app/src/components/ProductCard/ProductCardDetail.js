@@ -5,6 +5,7 @@ import styles from './ProductCardDetail.module.css'
 import { useParams } from 'react-router-dom'
 import getItemInfo from '../../Database/get_item_info'
 import addToBasket from '../../Database/add_to_basket'
+import SwipeableViews from 'react-swipeable-views';
 
 
 function ProductCardDetail() {
@@ -27,8 +28,6 @@ function ProductCardDetail() {
     
         };
     }, [productId])
-
-    console.log(data)
     
     function handleClickBasket() {
         if (selectedSize) {
@@ -73,10 +72,18 @@ function ProductCardDetail() {
         })
         }
     }
+   
+    useEffect(() => {
+        console.log(data)
+    },[data])
 
     return (
         <div className={styles.container}>
-            {data && data.imageUrls && <img src={data.imageUrls[0]} className={styles.productImg} />}
+            {data && data.imageUrls && <SwipeableViews>{data.imageUrls.map((url, index) => (
+                <img className={styles.productImg} src={url} key={index} />
+            ))}
+            </SwipeableViews>
+            }
             {data.name} 
             <br/> цена:{data.price}
             <br/> описание: {data.description}

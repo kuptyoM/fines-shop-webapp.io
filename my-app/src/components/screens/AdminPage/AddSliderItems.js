@@ -2,17 +2,15 @@ import React, { useEffect, useState } from 'react'
 import addToCollection from '../../../Database/add_item_collection'
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from '../../../Database/firebase';
+import addToSlider from '../../../Database/add_item_slider';
 
-function AddItemsPage() {
+function AddSliderItemsPage() {
     const [files, setFiles] = useState([]);
     const [itemData, setItemData] = useState({})
     const [name, setName] = useState('')
     const [price, setPrice] = useState(0)
-    const [sizes, setSizes] = useState('')
-    const [description, setDescription] = useState('')
-    const [quantity, setQuantity] = useState(0)
-    const [imageUrls, setImageUrls] = useState([])
     const [isDisabled, setIsDisabled] = useState(true)
+    const [imageUrl, setImageUrl] = useState('')
 
     const handleFileChange = (event) => {
         setFiles(event.target.files);
@@ -32,7 +30,7 @@ function AddItemsPage() {
             const uploadPromise = uploadBytes(storageRef, file)
                 .then(() => getDownloadURL(storageRef))
                 .then((url) => {
-                    setImageUrls(prev => [...prev, url]); 
+                    setImageUrl(prev => [...prev, url]); 
                 });
 
             promises.push(uploadPromise); 
@@ -54,16 +52,14 @@ function AddItemsPage() {
         setItemData({
             name: name,
             price: Number(price),
-            imageUrls: imageUrls,
-            sizes: sizes,
-            description: description,
+            imageUrl: imageUrl,
         });
-        console.log(sizes)
+
       }
 
       useEffect(() => {
         if (itemData.name) {
-            addToCollection(itemData)
+            addToSlider(itemData)
         }
       }, [itemData])
     
@@ -77,13 +73,9 @@ function AddItemsPage() {
                 <input type="text" id="name" onChange={event => setName(event.target.value)} required/>
                 <label for="price">Цена</label>
                 <input type="number" id="price" onChange={event => setPrice(event.target.value)} required/>
-                <label for="size">Размеры (через запятую)</label>
-                <input type="text" id="size" onChange={event => setSizes(event.target.value.split(',').map(size => size.trim()))} required/>
-                <label for="description">Описание</label>
-                <input type="text" id="description" onChange={event => setDescription(event.target.value)}/>
                 <div>
                     <h2>Фото товара</h2>
-                    <input type="file" multiple onChange={handleFileChange} required/>
+                    <input type="file" onChange={handleFileChange} required/>
                     <button onClick={handleUpload} type='button'>Загрузить фото</button>
                 </div>
                 <button type='submit' disabled={isDisabled}>Сохранить</button>
@@ -92,5 +84,5 @@ function AddItemsPage() {
     )
 }
 
-export default AddItemsPage
+export default AddSliderItemsPage
 
