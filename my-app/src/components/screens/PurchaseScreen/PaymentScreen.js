@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { db } from '../../../Database/firebase';
-import { collection, getDocs, query, addDoc, doc, deleteDoc } from "firebase/firestore";
+import { collection, getDocs, query, setDoc, doc, deleteDoc } from "firebase/firestore";
 import deletePurchasedSize from './delete_purchased_size';
 
 function PaymentScreen() {
@@ -14,7 +14,7 @@ function PaymentScreen() {
     const { itemsInfo } = location.state || {};
     const [password, setPassword] = useState('');
     const [showed, isShowed] = useState(false);
-  console.log(itemsInfo)
+ 
     const [isDisabled, setIsDisabled] = useState(false)
 
     let navigate = useNavigate();
@@ -65,18 +65,16 @@ function PaymentScreen() {
           });
         });
 
-        addDoc(collection(db, "orders"), {
+        const orderName = Math.floor(Math.random() * 1000)*Math.floor(Math.random() * 1000);
+
+        setDoc(doc(db, "orders", orderName), {
+          id: orderName,
           receiver: receiverId,
           user_id: "6254429205",
           products: products,
-          createdAt: new Date()
+          createdAt: new Date(),
+          orderStatus: "Оплачен"
         }).then(() => {
-          addDoc(collection(db, "users", "6254429205", "user_orders"), {
-            receiver: receiverId,
-            products: products,
-            createdAt: new Date()
-          });
-
           if (itemsInfo[1]) {
             deleteItemsFromBasket()
           }

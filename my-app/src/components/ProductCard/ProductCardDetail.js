@@ -42,7 +42,7 @@ function ProductCardDetail() {
 
     const handleSizeChange = (event) => {
         setSelectedSize(event.target.value);
-      };
+    };
 
     useEffect(() => {
         tg.ready();

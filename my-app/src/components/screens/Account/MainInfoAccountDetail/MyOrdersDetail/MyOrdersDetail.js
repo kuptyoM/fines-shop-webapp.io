@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from './MyOrdersDetail.module.css'
 import OrderBlock from './OrderBlock'
 import { db } from '../../../../../Database/firebase'
-import { collection, query, getDocs, orderBy } from "firebase/firestore";
+import { collection, query, getDocs, orderBy, where } from "firebase/firestore";
 
 
 function MyOrdersDetail() {
@@ -13,8 +13,8 @@ function MyOrdersDetail() {
     async function getAllOrders() {
         let ordersQuantity = 0;
         let ordersArray = []; 
-        let ordersRef = collection(db, "users", "6254429205", "user_orders");
-        const q = query(ordersRef, orderBy('createdAt', 'desc'));
+        let ordersRef = collection(db, "orders");
+        const q = query(ordersRef, where("user_id", "==", "6254429205"), orderBy('createdAt', 'desc'));
 
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {

@@ -3,11 +3,11 @@ import styles from './BasketDetail.module.css'
 import { useTelegram } from '../../../hooks/useTelegram'
 import { useNavigate } from "react-router-dom";
 import { useEffect } from 'react'
-import getItemsId from '../../../Database/get_items_id';
 import { db } from '../../../Database/firebase';
 import { doc, deleteDoc, collection, query, where, getDocs} from "firebase/firestore";
 import BasketProductCard from '../../ProductCard/BasketProductCard';
-import getItemInfo from '../../../Database/get_item_info';
+import checkAvaibility from './checkAvaibility';
+
 
 function BasketDetail() {
     const [itemsInfo, setItemsInfo] = useState([]);
@@ -35,15 +35,43 @@ function BasketDetail() {
             const ref = collection(db, "users", "6254429205", "basket");
             const q = query(ref)
             const querySnapshot = await getDocs(q);
-            querySnapshot.forEach((doc) => {
-                setItemsInfo(oldArr => [...oldArr, doc.data()])
-                totalPrice += doc.data().price
-                setFinalPrice(totalPrice)
-            });
+            if (!querySnapshot.empty) {
+                querySnapshot.forEach(async (doc) => {
+                    const isAvailable = await checkAvaibility(doc.data());
+                    if (isAvailable) {
+                        setItemsInfo(oldArr => [doc.data(), ...oldArr])
+                        totalPrice += doc.data().price
+                        setFinalPrice(totalPrice)
+                    } else {
+                        deleteButton(doc.data())
+                    }
+                });
+            }
           }
           getItems()
-    
+         
       }, [finalPrice])
+
+     
+
+      function deleteButton(deleteItem) {
+ 
+        async function getDocId(itemId) {
+            const myref = collection(db, "users", "6254429205", "basket");
+            const q = query(myref, where("id", "==", itemId))
+            const querySnapshot = await getDocs(q);
+            return querySnapshot.docs[0].id
+          }
+        setFinalPrice(finalPrice - deleteItem.price)
+        getDocId(deleteItem.id)
+        .then((docId) => {
+
+            const ref = doc(db, "users", "6254429205", "basket", docId)
+            deleteDoc(ref)
+        })
+        
+    };
+
       
         const navigateToPurchase = () => {
             navigate('/fines-shop-webapp.io/purchasescreen', {
@@ -52,23 +80,8 @@ function BasketDetail() {
                     finalPrice: finalPrice}
             })
         }
-        function deleteButton(deleteItem) {
- 
-            async function getDocId(itemId) {
-                const myref = collection(db, "users", "6254429205", "basket");
-                const q = query(myref, where("id", "==", itemId))
-                const querySnapshot = await getDocs(q);
-                return querySnapshot.docs[0].id
-              }
-            setFinalPrice(finalPrice - deleteItem.price)
-            getDocId(deleteItem.id)
-            .then((docId) => {
 
-                const ref = doc(db, "users", "6254429205", "basket", docId)
-                deleteDoc(ref)
-            })
-            
-        };
+    
     
         
     return (

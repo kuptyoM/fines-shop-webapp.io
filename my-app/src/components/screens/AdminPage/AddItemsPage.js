@@ -10,7 +10,6 @@ function AddItemsPage() {
     const [price, setPrice] = useState(0)
     const [sizes, setSizes] = useState('')
     const [description, setDescription] = useState('')
-    const [quantity, setQuantity] = useState(0)
     const [imageUrls, setImageUrls] = useState([])
     const [isDisabled, setIsDisabled] = useState(true)
 
@@ -51,6 +50,7 @@ function AddItemsPage() {
     const submit = e => {
         e.preventDefault();
         e.target.reset();
+        setFiles([])
         setItemData({
             name: name,
             price: Number(price),
@@ -58,7 +58,6 @@ function AddItemsPage() {
             sizes: sizes,
             description: description,
         });
-        console.log(sizes)
       }
 
       useEffect(() => {
