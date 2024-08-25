@@ -9,7 +9,7 @@ function AdminOrderCard({ num, order }) {
     const handleStatusChange = (event) => {
         setSelectedOrderStatus(event.target.value);
     };
-
+    
     const handleStatusSave = () => {
         const orderRef = doc(db, "orders", order.id);
         updateDoc(orderRef, {orderStatus: selectedOrderStatus})

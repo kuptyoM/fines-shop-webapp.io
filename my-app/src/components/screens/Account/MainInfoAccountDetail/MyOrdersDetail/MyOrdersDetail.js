@@ -37,7 +37,7 @@ function MyOrdersDetail() {
             )}
 
             {ordersData.map((data, index) => (
-                <OrderBlock num={index+1} receiver={data.receiver} products={data.products} timestamp={data.createdAt} key={index}/>
+                <OrderBlock num={index+1} order={data}/>
             ))}
             
             {!ordersData.length && <div>Нет заказов</div>}

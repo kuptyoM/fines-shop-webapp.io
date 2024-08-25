@@ -65,10 +65,10 @@ function PaymentScreen() {
           });
         });
 
-        const orderName = Math.floor(Math.random() * 1000)*Math.floor(Math.random() * 1000);
+        const newOrderRef = doc(collection(db, "orders"));
 
-        setDoc(doc(db, "orders", orderName), {
-          id: orderName,
+        setDoc(newOrderRef, {
+          id: newOrderRef.id,
           receiver: receiverId,
           user_id: "6254429205",
           products: products,
